@@ -10,9 +10,11 @@ var Document = function(props) {
     var args = ['div', { className: props.className }];
 
     if (props.node.content && props.node.content.length > 0) {
-        args = args.concat(props.node.content.map(function(node) {
-            return mapTree(node, props);
-        }));
+        args = args.concat(props.node.content
+            ? props.node.content.map(function(node) {
+                return mapTree(node, props);
+            })
+            : []);
     }
 
     return React.createElement.apply(React, args);
